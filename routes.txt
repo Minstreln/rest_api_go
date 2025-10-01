@@ -53,3 +53,25 @@ fmt.Println("Transfer Encoding:", r.TransferEncoding)
 fmt.Println("URL:", r.URL)
 fmt.Println("User Agent:", r.UserAgent())
 fmt.Println("Port:", r.URL.Port())
+
+
+
+
+// GETTING QUERY PARAMS AND URL
+fmt.Println(r.URL.Path)
+path := strings.TrimPrefix(r.URL.Path, "/teachers/")
+userID := strings.TrimSuffix(path, "/")
+
+fmt.Println("The ID is:", userID)
+
+fmt.Println("Query Params", r.URL.Query())
+queryParams := r.URL.Query()
+sortBy := queryParams.Get("sortBy")
+key := queryParams.Get("key")
+sortorder := queryParams.Get("sortorder")
+
+if sortorder == "" {
+sortorder = "DESC"
+}
+
+fmt.Printf("sortBy: %v, key: %v, sortorder: %v", sortBy, key, sortorder)
